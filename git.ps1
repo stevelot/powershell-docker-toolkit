@@ -7,7 +7,7 @@ mkdir ${PS_DCR_TK_HOME}/git/root -EA SilentlyContinue > $null
 #echo "Inladen git alias: Docker-AlpineGit. Verwijder via: Remove-Item alias:\git"
 Remove-Item alias:\git -EA SilentlyContinue #Verwijderen indien al bestaat +error msg stil houden
 
-Function global:Use-Docker-AlpineGit {
+Function global:Use-Ps-Docker-Git {
   #echo "alpineGit: $@: ${args}, pwd: $(Get-Location), home: ${HOME}"
   docker run -ti --rm `
             -v "${PS_DCR_TK_HOME}/git/root:/root" `
@@ -20,6 +20,6 @@ Function global:Use-Docker-AlpineGit {
           #-v "$(Get-Location):/_docker" `
 
 #Set-Alias git Docker-AlpineGit #-Option AllScope 
-New-Alias -Name "git" -Value Use-Docker-AlpineGit -Scope Global -Description "Git, maar dan via docker (alpine/git)"
+New-Alias -Name "git" -Value Use-Ps-Docker-Git -Scope Global -Description "Git, maar dan via docker (alpine/git)"
 
 #voorbeeld: git version

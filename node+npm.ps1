@@ -27,7 +27,7 @@ Function global:Use-Ps-Docker-Node {
  #            -e PATH=$PATH:/home/node/.npm-global/bin ` # optionally if you want to run npm global bin without specifying path
   #docker run -ti --rm -v "${HOME}/.ssh:/root/.ssh" -v "$(pwd):/git" alpine/git "${args}"
 }
-Function global:Use-Docker-Npm {
+Function global:Use-Ps-Docker-Npm {
   #echo "alpineGit: $@: ${args}, pwd: $(Get-Location), home: $DOCKER_HOME"
   docker run -ti --rm `
             -v "/usr/local/lib/node_modules/npm" `
@@ -43,7 +43,7 @@ Function global:Use-Docker-Npm {
 
 
 #Set-Alias git Docker-AlpineGit #-Option AllScope 
-New-Alias -Name "node" -Value Use-Docker-Node -Scope Global -Description "Node, maar dan via docker (node node)"
-New-Alias -Name "npm"  -Value Use-Docker-Npm  -Scope Global -Description "Npm, maar dan via docker (node npm)"
+New-Alias -Name "node" -Value Use-Ps-Docker-Node -Scope Global -Description "Node, maar dan via docker (node node)"
+New-Alias -Name "npm"  -Value Use-Ps-Docker-Npm  -Scope Global -Description "Npm, maar dan via docker (node npm)"
 
 #voorbeeld: node version
